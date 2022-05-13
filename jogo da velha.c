@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 #define LIN 3
 #define COL 3
@@ -9,26 +8,34 @@ void main(){
 
     printf("Bem vindo ao Jogo da Velha! \nPara jogar, digite qual o simbolo que deseja jogar (X ou O) e aperte enter. \n");
     printf("Em seguida, digite a coordenada em que deseja jogar na forma 'linha, coluna'.\n");
-    int velha;
+
+    int velha=0;
     int L, C;
     char simb;
+
+    for(int l=0; l<LIN; l++){
+        for(int c=0; c<COL; c++){
+            jogo[l][c]='.';
+        }
+    }
 
     while(velha==0){
 
         scanf("%s", &simb);
 
         if(simb!='x'&&simb!='X'&&simb!='o'&&simb!='O'){
-            printf("Digite um simbolo valido!");
+            printf("Digite um simbolo valido!\n");
             continue;
         }
 
         scanf("%d, %d", &L, &C);
 
         if(L>3||C>3){
-            printf("Coordenada invalida!");
+            printf("Coordenada invalida!\n");
             continue;
         }
 
+        //definir os elementos e imprimir a matriz
         for(int l=0; l<LIN; l++){
             for(int c=0; c<COL; c++){
                     if(l==L-1&&c==C-1){
@@ -60,7 +67,9 @@ void main(){
                     }
             }
             printf("\n");
-
+        //fim do for
         }
-}
+    //fim do while
+    }
+//fim do void
 }
