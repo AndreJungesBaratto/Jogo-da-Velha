@@ -4,6 +4,7 @@
 
 //Usaremos a biblioteca stdio.h para ler e escrever dados.
 #include <stdio.h>
+#include <conio.h>
 
 //A funcao 'imprimir', como o nome diz, serve para imprimir a matriz. Como sua unica funcao eh imprimir, nao ha necessidade de retorno e, logo, usei o void.
 //Basicamente ela ira imprimir na matriz os simbolos em suas devidas casas, definidas pelas outras funcoes abaixo. Como sera utilizada por quase todas as funcoes, foi colocada por primeiro no codigo.
@@ -34,23 +35,23 @@ int comecar(int jogo[3][3]){
 
     //Aqui peço que o usuário informe qual simbolo ira comecar o jogo
     char jogador;
-    scanf("%s", &jogador);
-
-    //Essas duas linhas sao apenas para que, caso o usuario entre 'x' ou 'o', o jogo comece mesmo assim. Para que o resto do codigo funcione, converto-os a 'X' e 'O'.
-    if(jogador=='x')jogador='X';
-    if(jogador=='o')jogador='O';
-
-    //Caso o usuario forneca um simbolo invalido, o jogo pedira que seja inserido um simbolo valido, e repete enquanto nao for inserido um simbolo valido.
-    while(jogador!='O'&&jogador!='X'){
-        printf("Digite um simbolo valido\n");
         scanf("%s", &jogador);
-    }
 
-    //Quando o simbolo eh definido, o jogo comeca. Assim, chamo a funcao 'imprimir'.
-    imprimir(jogo);
+        //Essas duas linhas sao apenas para que, caso o usuario entre 'x' ou 'o', o jogo comece mesmo assim. Para que o resto do codigo funcione, converto-os a 'X' e 'O'.
+        if(jogador=='x')jogador='X';
+        if(jogador=='o')jogador='O';
 
-    //A funcao retornara o jogador que comecou, fazendo com que essa informacao retorne para a funcao principal do jogo, a 'main'.
-    return jogador;
+        //Caso o usuario forneca um simbolo invalido, o jogo pedira que seja inserido um simbolo valido, e repete enquanto nao for inserido um simbolo valido.
+        while(jogador!='O'&&jogador!='X'){
+            printf("Digite um simbolo valido\n");
+            scanf("%s", &jogador);
+        }
+
+        //Quando o simbolo eh definido, o jogo comeca. Assim, chamo a funcao 'imprimir'.
+        imprimir(jogo);
+
+        //A funcao retornara o jogador que comecou, fazendo com que essa informacao retorne para a funcao principal do jogo, a 'main'.
+        return jogador;
 }
 
 //A funcao 'simbolo' serve para inverter o jogador da vez. Assim, nao ha necessidade de pedir ao usuario toda vez qual o simbolo que deseja jogar.
@@ -69,35 +70,35 @@ int armazenar(int jogo[3][3], char jogador){
     //Aqui defino as variaveis para as quais serao atribuidas as coordenadas escolhidas pelo jogador. L sera as linha, C sera a coluna.
     int L, C;
 
-    //Aqui o comando informa qual o jogador da vez.
-    printf("Vez de %c!\n", jogador);
+        //Aqui o comando informa qual o jogador da vez.
+        printf("Vez de %c!\n", jogador);
 
-    //Aqui, o comando le as coordenadas escolhidas.
-    scanf("%d", &L);
-    scanf("%d", &C);
+        //Aqui, o comando le as coordenadas escolhidas.
+        scanf("%d", &L);
+        scanf("%d", &C);
 
-        //Caso seja inserida uma coordenada invalida, este while continuara pedindo as coordenadas ate que uma valida seja inserida..
-        while(L>3||C>3){
-            printf("Digite uma coordenada valida!\n");
-                scanf("%d", &L);
-                scanf("%d", &C);
-        }
+            //Caso seja inserida uma coordenada invalida, este while continuara pedindo as coordenadas ate que uma valida seja inserida..
+            while(L>3||C>3){
+                printf("Digite uma coordenada valida!\n");
+                    scanf("%d", &L);
+                    scanf("%d", &C);
+            }
 
-                //Aqui, a coordenada escolhida sera redefinida para o simbolo da vez. Como as coordenadas da matriz nos 'for'vai de '0' a '2' e nas coordenadas do jogo vai de '1' a '3', eh preciso subtrair 1 de cada coordenada.
-                //Caso a casa esteja vazia, seu simbolo sera redefinido, a matriz sera imprimida e o jogador sera invertido.
-                if(jogo[L-1][C-1]=='.'){
-                    if(jogador=='X')jogo[L-1][C-1]='X';
-                    if(jogador=='O')jogo[L-1][C-1]='O';
+                    //Aqui, a coordenada escolhida sera redefinida para o simbolo da vez. Como as coordenadas da matriz nos 'for'vai de '0' a '2' e nas coordenadas do jogo vai de '1' a '3', eh preciso subtrair 1 de cada coordenada.
+                    //Caso a casa esteja vazia, seu simbolo sera redefinido, a matriz sera imprimida e o jogador sera invertido.
+                    if(jogo[L-1][C-1]=='.'){
+                        if(jogador=='X')jogo[L-1][C-1]='X';
+                        if(jogador=='O')jogo[L-1][C-1]='O';
 
-                        //Apos redefinir as coordenadas escolhidas, a matriz eh imprimida novamente, e o jogador eh invertido.
-                        imprimir(jogo);
-                        jogador=simbolo(jogador);
-                }
+                            //Apos redefinir as coordenadas escolhidas, a matriz eh imprimida novamente, e o jogador eh invertido.
+                            imprimir(jogo);
+                            jogador=simbolo(jogador);
+                    }
 
-                //Caso a casa escolhida já esteja definida como 'X' ou 'O', o comando nao ira redefinir nada, nao ira imprimir a matriz e o jogador nao sera invertido.
-                else{
-                    printf("Essa coordenada ja esta ocupada!\n");
-                }
+                    //Caso a casa escolhida já esteja definida como 'X' ou 'O', o comando nao ira redefinir nada, nao ira imprimir a matriz e o jogador nao sera invertido.
+                    else{
+                        printf("Essa coordenada ja esta ocupada!\n");
+                    }
 
     //Ao final do comando, a funcao retorna o jogador, de modo que, caso tenha sido invertido, continuara invertido quando voltar para a funcao 'main'.
     return jogador;
@@ -155,7 +156,7 @@ void main(){
     //Aqui defino a variavel jogador, que sera usada para armazenar o simbolo correto nas coordenadas.
     char jogador;
         //Texto indrodutorio com instrucoes de como jogar.
-        printf("Bem vindo ao Jogo da Velha!\nPara jogar, escolha um simbolo (X ou O) para come�ar.\nEm seguida, basta que cada jogador digite as coordenadas me que deseja jogar na forma 'linha (enter) coluna (enter)'.\n!!Atencao!!: se for inserida uma letra nas coordenadas, o programa ira bugar. Caso ocorra, reinicie o jogo.\nBom jogo!\n");
+        printf("Bem vindo ao Jogo da Velha!\nPara jogar, escolha um simbolo (X ou O) para comecar.\nEm seguida, basta que cada jogador digite as coordenadas em que deseja jogar na forma 'linha (enter) coluna (enter)'.\n!!Atencao!!: se for inserida uma letra nas coordenadas, o programa ira bugar. Caso ocorra, reinicie o jogo.\nBom jogo!\n");
         //O jogador inicial será definido apos o jgo comecar. Logo, ao mesmo tempo em que redefino o jogador, chamo a funcao que inicia o jogo.
         jogador=comecar(jogo);
 
@@ -188,4 +189,5 @@ void main(){
                 break;
             }
         }
+    getch();
 }
